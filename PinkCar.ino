@@ -1,5 +1,4 @@
 #include <SoftwareSerial.h>
-#include <MX1508.h>
 #define NumOfPwmPins 2
 #define LFA 9
 #define LFB 10
@@ -11,10 +10,6 @@
 #define RRB 3
 #define MIN_MAX 255   
  
-MX1508 lFront(LFA,LFB, SLOW_DECAY, NumOfPwmPins);
-MX1508 rFront (RFA,RFB, SLOW_DECAY, NumOfPwmPins);
-MX1508 lRear(LRA,LRB, SLOW_DECAY, NumOfPwmPins);
-MX1508 rRear(RRA,RRB, SLOW_DECAY, NumOfPwmPins);
 
 int lValue = 0;
 int rValue = 0;
@@ -28,6 +23,15 @@ SoftwareSerial radio(12, 13);
 
 void setup()
 {
+
+  pinMode(LFA, OUTPUT); 
+  pinMode(LFB, OUTPUT);
+  pinMode(RFA, OUTPUT);
+  pinMode(RFB, OUTPUT);
+  pinMode(LRA, OUTPUT);
+  pinMode(LRB, OUTPUT);
+  pinMode(RRA, OUTPUT);
+  pinMode(RRB, OUTPUT);
    
    radio.begin(9600);
 }
@@ -92,11 +96,55 @@ void execut()
 {
   int lSpin = map((lValue), 0, 1024, -MIN_MAX , MIN_MAX ); // limit for  rSpin > MIN_MAX
   int rSpin = map((rValue), 0, 1024, -MIN_MAX, MIN_MAX);     // limit for  rSpin > MIN_MAX
+ 
+ 
+ 
+ 
+ 
+  if (lSpin > 0 ) {
+ lForward(lSpin);  
+  
+  }else {
+lBackward (lSpin*(-1));  
+  };
 
-  lFront.motorGo(lSpin);  
-  lRear.motorGo(lSpin);    
-  rFront.motorGo(rSpin);  
-  rRear.motorGo(rSpin);  
+ if (rSpin > 0 ) {
+ rForward(rSpin);  
+  
+  }else {
+rBackward (rSpin*(-1));  
+  };
+ 
+ 
 }
 
+void lForward(int speed )
+{
+  analogWrite(LFA, 0);
+  analogWrite(LFB, speed);
+  analogWrite(LRA, 0);
+  analogWrite(LRB, speed);
+}
+void lBackward(int speed )
+{
+  analogWrite(LFA, speed);
+  analogWrite(LFB, 0);
+  analogWrite(LRA, speed);
+  analogWrite(LRB, 0);
+}
+
+void rForward(int speed )
+{
+  analogWrite(RFA, 0);
+  analogWrite(RFB, speed);
+  analogWrite(RRA, 0);
+  analogWrite(RRB, speed);
+}
+void rBackward(int speed )
+{
+  analogWrite(RFA, speed);
+  analogWrite(RFB, 0);
+  analogWrite(RRA, speed);
+  analogWrite(RRB, 0);
+}
 
