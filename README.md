@@ -1,4 +1,4 @@
 # PinkCar
 Pink car on Bluetooth control
-<img src="/relative/main/Bluetooth.jpeg" width="128"/>
+![Pink car image](PinkCaR.jpeg)
 ![Bluetooth control image](bluetooth.jpeg)
