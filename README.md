@@ -1,2 +1,2 @@
 # PinkCar
-Pink car in Bluetooth control
+Pink car on Bluetooth control
