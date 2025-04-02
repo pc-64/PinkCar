@@ -1,3 +1,3 @@
 # PinkCar
 Pink car on Bluetooth control
-<img src="Bluetooth.jpg" width="128"/>
+<img src="Bluetooth.jpeg" width="128"/>
