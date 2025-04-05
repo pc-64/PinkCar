@@ -3,7 +3,7 @@
 const byte lPin = A0;
 const byte rPin = A1;
 
-SoftwareSerial radio(2, 3);
+SoftwareSerial radio(12, 13);
 
 void setup()
 {
