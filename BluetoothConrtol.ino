@@ -16,11 +16,16 @@ void loop()
    unsigned long interval = 250;
    if (millis() - timer >= interval)
    {
-      timer = millis();
-      int lValue = analogRead(lPin);
-      int rValue = analogRead(rPin);
+       timer = millis();
+
+       int lValue;
+       int rValue;
+       int command2;
+       lValue = (analogRead(lPin)+1)/16 ;
+       rValue = (analogRead(rPin)+1)/16;
+       command2 = rValue + (lValue ) * 100;
       char buffer[15];
-      snprintf(buffer, 14, "%d,%d", lValue, rValue);
+      snprintf(buffer, 14, "%d", command2);
       radio.println(buffer);
    }
 }
