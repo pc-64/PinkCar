@@ -42,8 +42,8 @@ void loop()
    
    if (ready)
    {
-      parser();
-      execut();
+      
+      execut(atoi(cache);
       ready = false;
    }
 }
@@ -91,8 +91,50 @@ void parser()
    lValue = atoi(strings[0]);
    rValue = atoi(strings[1]);   
 }
-
-void execut()
+void execut(int command)
+{
+int lSpin = (command/100)-32 ;
+int rSpin = (command%100)-32 ;
+ 
+if (rSpin) {
+if (rSpin > 0 ) {
+SpinUp(RFA, LOW, RFB, rSpin);
+SpinUp(RRA, LOW, RRB, rSpin);
+ 
+} else {
+SpinUp(RFA, abs(rSpin), RFB, LOW);
+SpinUp(RRA, abs(rSpin), RRB, LOW);
+};
+}
+else {
+SpinUp(RFA, LOW, RFB, LOW);
+SpinUp(RRA, LOW, RRB, LOW);
+}
+if (lSpin) {
+ 
+if (lSpin > 0 ) {
+SpinUp(LFA, LOW, LFB, lSpin );
+SpinUp(LRA, LOW, LRB, lSpin);
+ 
+} else {
+SpinUp(LFA, abs(lSpin), LFB, LOW);
+SpinUp(LRA, abs(lSpin), LRB, LOW);
+ 
+};
+} else {
+ 
+SpinUp(LFA, LOW, LFB, LOW);
+SpinUp(LRA, LOW, LRB, LOW);
+}
+ 
+}
+ 
+void SpinUp(int in1, int val1, int in2 , int val2 )
+{
+digitalWrite(in1, val1);
+digitalWrite(in2, val2);
+}
+void execut2()
 {
   int lSpin = map((lValue), 0, 1024, -MIN_MAX , MIN_MAX ); // limit for  rSpin > MIN_MAX
   int rSpin = map((rValue), 0, 1024, -MIN_MAX, MIN_MAX);     // limit for  rSpin > MIN_MAX
