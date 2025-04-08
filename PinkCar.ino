@@ -6,8 +6,8 @@
 #define RFB 8
 #define LRA 5
 #define LRB 6
-#define RRA 4
-#define RRB 3
+#define RRA 3
+#define RRB 4
 #define MIN_MAX 255   
  
 
@@ -43,7 +43,7 @@ void loop()
    if (ready)
    {
       
-      execut(atoi(cache);
+      execut(atoi(cache));
       ready = false;
    }
 }
@@ -76,26 +76,13 @@ void fetch()
    }
 }
 
-void parser()
-{
-   char *strings[2]; 
-   char *ptr = NULL; byte index = 0;
-   ptr = strtok(cache, ","); 
-   while (ptr != NULL)
-   {
-      strings[index] = ptr;
-      index++;
-      ptr = strtok(NULL, ",");
-   }
 
-   lValue = atoi(strings[0]);
-   rValue = atoi(strings[1]);   
-}
 void execut(int command)
 {
 int lSpin = (command/100)-32 ;
 int rSpin = (command%100)-32 ;
- 
+lSpin = lSpin /10 * 10;
+rSpin = rSpin /10 * 10;
 if (rSpin) {
 if (rSpin > 0 ) {
 SpinUp(RFA, LOW, RFB, rSpin);
